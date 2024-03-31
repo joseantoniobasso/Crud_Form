@@ -21,16 +21,11 @@ namespace Crud_Form
             _conexao.Dispose();
         }
 
-        public List<Usuario> PesquisarUsuarios(int id, string nome, string login, string email, bool? ativo)
+        public List<Usuario> PesquisarUsuarios(string nome, string login, string email, bool? ativo)
         {
             var lista = new List<Usuario>();
 
             string codigo = "SELECT * FROM usuario WHERE 1 = 1";
-
-            if (id != 0)
-            {
-                codigo += " AND id = @id";
-            }
 
             if (!string.IsNullOrEmpty(nome))
             {
@@ -54,7 +49,6 @@ namespace Crud_Form
 
             using (var comando = new MySqlCommand(codigo, _conexao))
             {
-                comando.Parameters.AddWithValue("id", id);
                 comando.Parameters.AddWithValue("nome", $"%{nome}%");
                 comando.Parameters.AddWithValue("login", $"%{login}%");
                 comando.Parameters.AddWithValue("email", $"%{email}%");

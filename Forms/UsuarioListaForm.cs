@@ -87,7 +87,6 @@ namespace Crud_Form
 
         private void PesquisarButton_Click_1(object sender, EventArgs e)
         {
-            var id = GetUsuarioSelecionado();
             var nome = nomePesquisarTextBox.Text;
             var login = loginPesquisarTextBox.Text;
             var email = emailPesquisarTextBox.Text;
@@ -102,7 +101,7 @@ namespace Crud_Form
                 ativo = false;
             }
 
-            UsuariosGridView.DataSource = repositorio.PesquisarUsuarios(id, nome, login, email, ativo);
+            UsuariosGridView.DataSource = repositorio.PesquisarUsuarios(nome, login, email, ativo);
 
             UsuariosGridView.ClearSelection();
         }
